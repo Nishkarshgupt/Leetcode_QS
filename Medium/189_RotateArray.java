@@ -1,8 +1,8 @@
-// LeetCode 189: Rotate Array
-Problem Link: [https://leetcode.com/problems/rotate-array/description/](https://leetcode.com/problems/rotate-array/description/)
+## LeetCode 189: Rotate Array
+Problem Link: [https:leetcode.com/problems/rotate-array/description/](https:leetcode.com/problems/rotate-array/description/)
 
 // ------------------------------------------------------------
-// 📝 Approach 1: Using Extra Array (Simple Approach)
+## 📝 Approach 1: Using Extra Array (Simple Approach)
 // ------------------------------------------------------------
 // - Create a new array of same size as `nums[]`.
 // - Place each element at its new rotated position `(i + k) % n`.
