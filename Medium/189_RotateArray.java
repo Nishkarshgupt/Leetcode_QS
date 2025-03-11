@@ -1,5 +1,5 @@
 // LeetCode 189: Rotate Array
-// Problem Link: [https://leetcode.com/problems/rotate-array/description/] 
+Problem Link: [https://leetcode.com/problems/rotate-array/description/](https://leetcode.com/problems/rotate-array/description/)
 
 // ------------------------------------------------------------
 // 📝 Approach 1: Using Extra Array (Simple Approach)
