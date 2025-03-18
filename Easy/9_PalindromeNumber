@@ -1,0 +1,72 @@
+// LeetCode 9: Palindrome Number  
+// Problem Link: https://leetcode.com/problems/palindrome-number/description/
+// ============================================================================  
+// 📝 Approach 1: Reverse Number (O(n))  
+// ============================================================================  
+// - If the number is negative → return false (since negative numbers are not palindromes)  
+// - Reverse the number digit by digit:  
+//    - Extract last digit using `%`  
+//    - Add it to the reversed number  
+//    - Remove last digit using `/`  
+// - Compare the reversed number with the original number  
+// ============================================================================  
+// ✅ Time Complexity: O(log₁₀(n)) → Number of digits in the number  
+// ✅ Space Complexity: O(1) (constant extra space)  
+// ============================================================================  
+
+class Solution {
+    public boolean isPalindrome(int x) {
+        if (x < 0) return false; // Negative numbers can't be palindromes
+        
+        int original = x;
+        int rem, sum = 0;
+        
+        while (x > 0) {
+            rem = x % 10; // Get last digit
+            sum = sum * 10 + rem; // Add to reversed number
+            x = x / 10; // Remove last digit
+        }
+        
+        return sum == original;
+    }
+}
+
+// ============================================================================  
+// 📝 Approach 2: Reverse Half of the Number (Optimal Solution)  
+// ============================================================================  
+// - If the number is negative or last digit is 0 (but number is not 0) → return false  
+// - Reverse only half of the number:  
+//    - Extract last digit using `%`  
+//    - Add it to the reversed number  
+//    - Remove last digit using `/`  
+// - Stop when the original part becomes smaller than or equal to the reversed part  
+// - If original part equals reversed part (or reversed part without last digit for odd-length numbers) → palindrome  
+// ============================================================================  
+// ✅ Time Complexity: O(log₁₀(n)) → Number of digits in the number  
+// ✅ Space Complexity: O(1) (constant extra space)  
+// ============================================================================  
+
+class Solution {
+    public boolean isPalindrome(int x) {
+        if (x < 0 || (x != 0 && x % 10 == 0)) return false;
+
+        int reversed = 0;
+        while (x > reversed) {
+            reversed = reversed * 10 + x % 10;
+            x = x / 10;
+        }
+
+        // For even-length → x == reversed  
+        // For odd-length → x == reversed / 10 (since middle digit is already matched)  
+        return x == reversed || x == reversed / 10;
+    }
+}
+
+// ============================================================================  
+// ✅ Summary of Approaches  
+// ============================================================================  
+// | Approach                             | Time Complexity | Space Complexity | Notes |  
+// |------------------------------------- |---------------- |------------------|-------|  
+// | Reverse Number                      | O(log₁₀(n))     | O(1)              | Reverse the full number and compare |  
+// | **Reverse Half of the Number (Best)**| **O(log₁₀(n))**   | **O(1)**            | Reverse only half and compare with original |  
+// ============================================================================  
