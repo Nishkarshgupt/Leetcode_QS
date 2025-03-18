@@ -1,5 +1,62 @@
 // LeetCode 53: Maximum Subarray
 // Problem Link: https://leetcode.com/problems/maximum-subarray/description/
+// ============================================================================
+// 📝 Approach 1: Brute Force (O(n³))
+// ============================================================================
+// - Generate all possible subarrays using three nested loops:  
+//    - Outer loop → starting index of the subarray  
+//    - Middle loop → ending index of the subarray  
+//    - Inner loop → calculate the sum of the subarray  
+// - Track the maximum sum encountered so far  
+// ============================================================================
+// ✅ Time Complexity: O(n³)  
+// ✅ Space Complexity: O(1) (constant extra space)  
+// ============================================================================
+
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int largest = Integer.MIN_VALUE;
+
+        for (int i = 0; i < nums.length; i++) { // Starting index
+            for (int j = i; j < nums.length; j++) { // Ending index
+                int sum = 0;
+                for (int k = i; k <= j; k++) { // Summing elements
+                    sum += nums[k];
+                }
+                largest = Math.max(largest, sum);
+            }
+        }
+        return largest;
+    }
+}
+
+// ============================================================================
+// 📝 Approach 2: Better Approach (O(n²))
+// ============================================================================
+// - Generate all possible subarrays using two nested loops:  
+//    - Outer loop → starting index of the subarray  
+//    - Inner loop → ending index of the subarray  
+//    - Maintain a running sum while expanding the subarray  
+// - Track the maximum sum encountered so far  
+// ============================================================================
+// ✅ Time Complexity: O(n²)  
+// ✅ Space Complexity: O(1) (constant extra space)  
+// ============================================================================
+
+class Solution {
+    public int maxSubArray(int[] nums) {
+        int largest = Integer.MIN_VALUE;
+
+        for (int i = 0; i < nums.length; i++) { // Starting index
+            int sum = 0;
+            for (int j = i; j < nums.length; j++) { // Ending index
+                sum += nums[j];
+                largest = Math.max(largest, sum);
+            }
+        }
+        return largest;
+    }
+}
 
 // ------------------------------------------------------------
 // 📝 Approach: Kadane's Algorithm (Optimal Solution)
@@ -33,3 +90,13 @@ class Solution {
         return largest;
     }
 }
+// ============================================================================
+// ✅ Summary of Approaches  
+// ============================================================================
+// | Approach                    | Time Complexity | Space Complexity | Notes |
+// |---------------------------- |---------------- |------------------|-------|
+// | Brute Force                 | O(n³)           | O(1)              | Generate all subarrays and calculate sum using three loops |
+// | Better Approach             | O(n²)           | O(1)              | Generate all subarrays and calculate sum using two loops |
+// | **Kadane's Algorithm (Best)**| **O(n)**         | **O(1)**            | Maintain running sum and reset if negative |
+// ============================================================================
+
