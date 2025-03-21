@@ -1,0 +1,43 @@
+// LeetCode 704: Binary Search  
+// Problem Link: https://leetcode.com/problems/binary-search/description/  
+
+// ============================================================================  
+// 📝 Approach 1: Binary Search (Optimal)  
+// ============================================================================  
+// - Initialize two pointers: `start` and `end`  
+// - Find the middle element using `mid = (start + end) / 2`  
+// - If `nums[mid]` equals the target, return `mid`  
+// - If `nums[mid]` > target, search in the left half  
+// - If `nums[mid]` < target, search in the right half  
+// - Repeat until `start <= end`  
+// ============================================================================  
+// ✅ Time Complexity: O(log n)  
+// ✅ Space Complexity: O(1) (constant extra space)  
+// ============================================================================  
+
+class Solution {
+    public int search(int[] nums, int target) {
+        int start = 0, end = nums.length - 1;
+        
+        while (start <= end) {
+            int mid = (start + end) / 2;
+            
+            if (nums[mid] == target) {
+                return mid;
+            } else if (nums[mid] > target) {
+                end = mid - 1;
+            } else {
+                start = mid + 1;
+            }
+        }
+        return -1;
+    }
+}
+
+// ============================================================================  
+// ✅ Summary of Approaches  
+// ============================================================================  
+// | Approach                     | Time Complexity | Space Complexity | Notes |  
+// |----------------------------- |---------------- |------------------|-------|  
+// | **Binary Search (Best)**     | **O(log n)**     | **O(1)**            | Divide and conquer using two pointers |  
+// ============================================================================
